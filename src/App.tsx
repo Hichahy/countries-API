@@ -1,11 +1,27 @@
+import React, { useState, useEffect }  from 'react';
 import "./App.css";
-import useFetch from "react-fetch-hook";
 import SearchPage from "./components/searchPage/SearchPage";
 
 const App = () => {
-  const { isLoading, error, data } = useFetch(
-    "https://restcountries.com/v3.1/all"
-  );
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setdata] = useState([]);
+
+//Fetch
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all")
+        .then((res) => res.json())
+        .then(
+            (result) => {
+              setIsLoading(true);
+              setdata(result);
+            },
+            (error) => {
+              setIsLoading(true);
+                setError(error);
+            }
+        );
+}, []);
 
   return (
     <div className="App">

@@ -1,12 +1,42 @@
 import React, { useState } from "react";
 import "./selectRegion.css";
 
-const SelectRegion = () => {
+const SelectRegion = ({ setSelectedValue }: any) => {
   const [open, setOpen] = useState(false);
-  console.log(open);
+  const [options] = useState([
+    {
+      value: "Africa",
+      name: "Africa",
+    },
+    {
+      value: "America",
+      name: "America",
+    },
+    {
+      value: "Asia",
+      name: "Asia",
+    },
+    {
+      value: "Europe",
+      name: "Europe",
+    },
+    {
+      value: "Oceania",
+      name: "Oceania",
+    },
+    {
+      value: "",
+      name: "All",
+    },
+  ]);
 
   const handleOpen = () => {
     setOpen((prev) => !prev);
+  };
+
+  const handleSelectOption = (e: any) => {
+    setSelectedValue(e.target.value);
+    handleOpen();
   };
 
   return (
@@ -31,11 +61,11 @@ const SelectRegion = () => {
         <>
           <div className="overlay" onClick={handleOpen} />
           <div className="options">
-            <option value="africa">Africa</option>
-            <option value="america">America</option>
-            <option value="asia">Asia</option>
-            <option value="europe">Europe</option>
-            <option value="oceania">Oceania</option>
+            {options.map((i, index) => (
+              <option onClick={handleSelectOption} key={index} value={i.value}>
+                {i.name}
+              </option>
+            ))}
           </div>
         </>
       ) : null}
