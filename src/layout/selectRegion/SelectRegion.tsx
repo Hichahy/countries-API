@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./selectRegion.css";
 
-const SelectRegion = ({ setSelectedValue }: any) => {
+const SelectRegion = ({
+  setSelectedValue,
+  selectedValue,
+  filteredSelect,
+}: any) => {
   const [open, setOpen] = useState(false);
   const [options] = useState([
     {
@@ -36,13 +40,14 @@ const SelectRegion = ({ setSelectedValue }: any) => {
 
   const handleSelectOption = (e: any) => {
     setSelectedValue(e.target.value);
+    filteredSelect(e.target.value);
     handleOpen();
   };
 
   return (
     <div>
       <button onClick={handleOpen}>
-        Filter by Region
+        {`${!selectedValue ? "Filter by Region" : selectedValue}`}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

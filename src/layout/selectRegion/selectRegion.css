@@ -46,6 +46,10 @@ option:hover {
   background: rgb(235, 235, 235);
 }
 
+.option:visited {
+  background-color: rgb(41, 82, 0);
+}
+
 .overlay {
   height: 100vh;
   width: 100%;

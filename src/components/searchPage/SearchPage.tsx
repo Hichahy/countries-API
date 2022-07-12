@@ -1,53 +1,44 @@
 import React, { useState, useEffect } from "react";
 import SelectRegion from "../../layout/selectRegion/SelectRegion";
+import { NavLink } from "react-router-dom";
 import "./searchPage.css";
 
 interface IProps {
   data: any;
   isLoading: boolean;
   error: Error | null;
+  setFiltered: any;
+  filtered: any;
 }
 
-const SearchPage = ({ data, isLoading, error }: IProps) => {
+const SearchPage = ({
+  data,
+  isLoading,
+  error,
+  setFiltered,
+  filtered,
+}: IProps) => {
   const [searchValue, setSearchValue] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
-  const [filtered, setFiltered] = useState([]);
 
   const handleSearchInput = (e: any) => {
     setSearchValue(e.target.value.toLowerCase());
-  };
-
-  const handleSearchFilter = () => {
-    const filteredSearch = data.filter((i: any) =>
-      i.name.common.toLowerCase().includes(searchValue.toLowerCase())
+    setFiltered(
+      data.filter((i: any) =>
+        i.name.common.toLowerCase().includes(e.target.value.toLowerCase())
+      )
     );
-    if (!searchValue) {
-      setFiltered(data);
-    } else if (searchValue) {
-      setFiltered(filteredSearch);
-    }
-  };
-
-  const handleSelectFilter = () => {
-    const filteredSelect = data.filter(
-      (i: any) => i.region.indexOf(selectedValue) >= 0
-    );
-    if (!selectedValue) {
-      setFiltered(data);
-    } else if (selectedValue) {
-      setFiltered(filteredSelect);
-    } else if (selectedValue !== "") {
-      setSelectedValue("");
-    }
   };
 
   useEffect(() => {
-    handleSearchFilter();
-  }, [data, searchValue]);
+    if (isLoading)
+      return () => {
+        setFiltered(data);
+      };
+  }, [data]);
 
-  useEffect(() => {
-    handleSelectFilter();
-  }, [selectedValue]);
+  const filteredSelect = (value: string) =>
+    setFiltered(data.filter((i: any) => i.region.indexOf(value) >= 0));
 
   if (!isLoading) {
     return (
@@ -58,7 +49,7 @@ const SearchPage = ({ data, isLoading, error }: IProps) => {
     );
   } else if (error) {
     return (
-      <div>
+      <div className="error">
         <p>{error.message} 🥲</p>
       </div>
     );
@@ -77,15 +68,21 @@ const SearchPage = ({ data, isLoading, error }: IProps) => {
               placeholder="Search for a country..."
             />
           </div>
-          <SelectRegion setSelectedValue={setSelectedValue} />
+          <SelectRegion
+            filteredSelect={filteredSelect}
+            selectedValue={selectedValue}
+            setSelectedValue={setSelectedValue}
+          />
         </section>
         <section className="card-section">
           {filtered.length < 1 ? (
-            <p>Not found country {searchValue}</p>
+            <p className="found-error">Not found country {searchValue}</p>
           ) : (
-            filtered.map((i: any, index: number) => (
-              <div className="card" key={index}>
-                <img src={i.flags.png} alt={`${i.name.common} flag`} />
+            filtered.map((i: any) => (
+              <div className="card" key={i.cca2}>
+                <NavLink to={`/country/${i.cca2}`}>
+                  <img src={i.flags.png} alt={`${i.name.common} flag`} />
+                </NavLink>
                 <div style={{ padding: "0px 25px" }}>
                   <header>
                     <h1>{i.name.common}</h1>
