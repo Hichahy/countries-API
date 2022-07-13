@@ -4,20 +4,21 @@ button {
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  box-shadow: var(--shadows)  0px 7px 29px 0px;
   border-radius: 8px;
   margin: 30px 20px 8px;
   background: none;
   padding: 0 25px;
   width: 200px;
   font-size: 14px;
-  background-color: #fff;
+  background-color: var(--elements);
+  color: var(--font-color);
   cursor: pointer;
   outline: none;
 }
 
 .options {
-  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  box-shadow: var(--shadows) 0px 7px 29px 0px;
   border-radius: 8px;
   margin: 0 20px;
   background: none;
@@ -30,7 +31,7 @@ button {
   overflow: hidden;
   position: absolute;
   padding: 13px 0;
-  background-color: #fff;
+  background-color: var(--elements);
 }
 
 option {
@@ -44,10 +45,7 @@ option {
 
 option:hover {
   background: rgb(235, 235, 235);
-}
-
-.option:visited {
-  background-color: rgb(41, 82, 0);
+  color: black;
 }
 
 .overlay {

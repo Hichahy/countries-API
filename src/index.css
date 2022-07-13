@@ -1,14 +1,28 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");
+:root {
+  --font-color: hsl(200, 15%, 8%);
+  --background-color: hsl(0, 0%, 98%);
+  --elements: hsl(0, 0%, 100%);
+  --shadows: rgb(100 100 111 / 20%);
+}
+
+[data-theme="dark"] {
+  --font-color: hsl(0, 0%, 100%);
+  --background-color: hsl(207, 26%, 17%);
+  --elements: hsl(209, 23%, 22%);
+  --shadows: rgb(0 0 0 / 20%);
+}
 
 body {
   margin: 0;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: hsl(0, 0%, 98%);
+  background-color: var(--background-color);
+  color: var(--font-color);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
