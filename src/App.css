@@ -1,10 +1,33 @@
 .main-header {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    font-size: 8px;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 39px;
-    background-color: #fff;
-  }
+  box-shadow: var(--shadows) 0px 7px 29px 0px;
+  font-size: 8px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 39px;
+  background-color: var(--elements);
+  color: var(--font-color);
+}
+
+.main-header i {
+  cursor: pointer;
+}
+
+.main-header button {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 92px;
+  font-size: 14px;
+  background-color: transparent;
+  color: var(--font-color);
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  margin: none;
+  margin: 0;
+  height: fit-content;
+  padding: 0;
+}

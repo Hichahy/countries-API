@@ -4,15 +4,17 @@
 
 .borders {
   font-weight: 400;
-  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  box-shadow: var(--shadows) 0px 7px 29px 0px;
   border-radius: 8px;
   height: 35px;
   width: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #d8d8d8cc;
+  border: 1px solid var(--elements);
   margin: 10px;
+  background-color: var(--elements);
+  border: 1px solid var(--shadows);
 }
 
 a {
@@ -25,7 +27,7 @@ a {
   align-items: center;
   justify-content: space-between;
   height: 39px;
-  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  box-shadow: var(--shadows) 0px 7px 29px 0px;
   border-radius: 8px;
   background: none;
   padding: 0 25px;
@@ -34,9 +36,10 @@ a {
   background-color: #fff;
   cursor: pointer;
   outline: none;
-  border: 1px solid #8080804d;
+  border: 1px solid var(--shadows);
   margin-bottom: 60px;
   margin: 50px 0;
+  background-color: var(--elements);
 }
 .inf-img-box {
   display: flex;

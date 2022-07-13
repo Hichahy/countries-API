@@ -2,18 +2,49 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import CountryInformation from "./components/countryInformation/CountryInformation";
 import SearchPage from "./components/searchPage/SearchPage";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setdata] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
 
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  //Dark Mode
+  const setDark = () => {
+    localStorage.setItem("theme", "dark");
+    document.documentElement.setAttribute("data-theme", "dark");
+
+  };
+
+  const setLight = () => {
+    localStorage.setItem("theme", "light");
+    document.documentElement.setAttribute("data-theme", "light");
+
+  };
+
+  const storedTheme = localStorage.getItem("theme");
+
+  const prefersDark =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const defaultDark =
+    storedTheme === "dark" || (storedTheme === null && prefersDark);
+
+  if (defaultDark) {
+    setDark();
+  }
+
+  const toggleTheme = () => {
+    setDarkMode((prev) => !prev)
+    if (!darkMode) {
+      setDark();
+    } else {
+      setLight();
+    }
+  };
 
   //Fetch
   useEffect(() => {
@@ -36,7 +67,10 @@ const App = () => {
     <div className="App">
       <header className="main-header">
         <h1>Where in the world?</h1>
-        <i className="bi bi-moon"> Dark Mode</i>
+        <button onClick={toggleTheme}>
+          <i className={`${darkMode ? "bi bi-moon-fill" : "bi bi-moon"}`} />
+          Dark Mode
+        </button>
       </header>
 
       <Routes>
@@ -52,10 +86,7 @@ const App = () => {
             />
           }
         />
-        <Route
-          path="/country/:cca2"
-          element={<CountryInformation/>}
-        />
+        <Route path="/country/:cca2" element={<CountryInformation />} />
       </Routes>
     </div>
   );
