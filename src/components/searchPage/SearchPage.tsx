@@ -4,11 +4,11 @@ import { NavLink } from "react-router-dom";
 import "./searchPage.css";
 
 interface IProps {
-  data: any;
+  data: never[];
   isLoading: boolean;
   error: Error | null;
-  setFiltered: any;
-  filtered: any;
+  setFiltered: React.Dispatch<React.SetStateAction<never[]>>;
+  filtered: never[];
 }
 
 const SearchPage = ({
@@ -35,7 +35,7 @@ const SearchPage = ({
       return () => {
         setFiltered(data);
       };
-  }, [data]);
+  }, [data, isLoading, setFiltered]);
 
   const filteredSelect = (value: string) =>
     setFiltered(data.filter((i: any) => i.region.indexOf(value) >= 0));

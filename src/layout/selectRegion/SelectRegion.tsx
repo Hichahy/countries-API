@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import "./selectRegion.css";
 
+interface IProps {
+  setSelectedValue: React.Dispatch<React.SetStateAction<string>>;
+  selectedValue: string;
+  filteredSelect: (value: string) => void;
+}
+
 const SelectRegion = ({
   setSelectedValue,
   selectedValue,
   filteredSelect,
-}: any) => {
+}: IProps) => {
   const [open, setOpen] = useState(false);
   const [options] = useState([
     {

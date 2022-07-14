@@ -10,6 +10,12 @@
   color: var(--font-color);
 }
 
+.App {
+  background-color: var(--background-color);
+  color: var(--font-color);
+  height: 100%;
+}
+
 .main-header i {
   cursor: pointer;
 }

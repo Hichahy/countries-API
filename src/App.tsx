@@ -3,47 +3,24 @@ import "./App.css";
 import CountryInformation from "./components/countryInformation/CountryInformation";
 import SearchPage from "./components/searchPage/SearchPage";
 import { Route, Routes } from "react-router-dom";
+import useLocalStorage from "use-local-storage";
 
 const App = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setdata] = useState([]);
   const [filtered, setFiltered] = useState([]);
-  const [darkMode, setDarkMode] = useState(false);
 
-  //Dark Mode
-  const setDark = () => {
-    localStorage.setItem("theme", "dark");
-    document.documentElement.setAttribute("data-theme", "dark");
 
-  };
+  const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [theme, setTheme] = useLocalStorage(
+    "theme",
+    defaultDark ? "dark" : "light"
+  );
 
-  const setLight = () => {
-    localStorage.setItem("theme", "light");
-    document.documentElement.setAttribute("data-theme", "light");
-
-  };
-
-  const storedTheme = localStorage.getItem("theme");
-
-  const prefersDark =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  const defaultDark =
-    storedTheme === "dark" || (storedTheme === null && prefersDark);
-
-  if (defaultDark) {
-    setDark();
-  }
-
-  const toggleTheme = () => {
-    setDarkMode((prev) => !prev)
-    if (!darkMode) {
-      setDark();
-    } else {
-      setLight();
-    }
+  const switchTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
   };
 
   //Fetch
@@ -64,11 +41,13 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" data-theme={theme}>
       <header className="main-header">
         <h1>Where in the world?</h1>
-        <button onClick={toggleTheme}>
-          <i className={`${darkMode ? "bi bi-moon-fill" : "bi bi-moon"}`} />
+        <button onClick={switchTheme}>
+          <i
+            className={`${theme === "dark" ? "bi bi-moon-fill" : "bi bi-moon"}`}
+          />
           Dark Mode
         </button>
       </header>
