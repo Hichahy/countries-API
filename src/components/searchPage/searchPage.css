@@ -1,5 +1,7 @@
 .countries-container {
   padding: 0 39px;
+  background-color: var(--background-color);
+  min-height: 90vh;
 }
 
 .main-header h1 {
@@ -61,6 +63,7 @@
   margin: 25px;
   height: 340px;
   background-color: var(--elements);
+  color: var(--font-color);
 }
 
 .card img {
@@ -126,6 +129,7 @@
   -webkit-animation: puff-in-center 0.2s cubic-bezier(0.47, 0, 0.745, 0.715)
     both;
   animation: puff-in-center 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+  color: var(--font-color);
 }
 
 @media screen and (max-width: 760px) {

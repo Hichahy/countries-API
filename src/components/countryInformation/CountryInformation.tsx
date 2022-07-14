@@ -91,7 +91,6 @@ const CountryInformation = () => {
               </p>
             </section>
           </div>
-
           <section className="border">
             <label>Border Countries:</label>
             <div className="borders-box">

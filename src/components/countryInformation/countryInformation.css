@@ -1,5 +1,6 @@
 .country-container {
   padding: 0 25px;
+  background-color: var(--background-color);
 }
 
 .borders {
@@ -11,10 +12,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--elements);
   margin: 10px;
   background-color: var(--elements);
   border: 1px solid var(--shadows);
+  color: var(--font-color);
 }
 
 a {
@@ -66,9 +67,9 @@ section label {
   flex-wrap: wrap;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 375px) {
   .country-container {
-    padding: 0 50px 0px;
+    padding: 0 80px 0px;
   }
   .back-btn {
     margin: 40px 0;
@@ -79,16 +80,16 @@ section label {
   .inf-img-box {
     justify-content: start;
     width: 35%;
+    margin-right: 30px;
   }
 
   .secion-box-first {
     display: flex;
-    justify-content: space-between;
   }
 
   .inf-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   .border {
@@ -97,7 +98,7 @@ section label {
   }
 
   .first-inf-sec {
-    margin: 0;
+    margin-right: 30px;
   }
 
   .borders-box {
@@ -105,6 +106,6 @@ section label {
   }
 
   .inf-box {
-    width: 50%;
+    width: 65%;
   }
 }
